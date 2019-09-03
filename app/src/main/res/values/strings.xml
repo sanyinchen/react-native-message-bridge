@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">android-native-dynamic-bridge</string>
+    <string name="action_settings">Settings</string>
+</resources>

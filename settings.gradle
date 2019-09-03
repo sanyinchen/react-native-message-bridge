@@ -1,0 +1,2 @@
+include ':app', ':nativebridge'
+rootProject.name='android-native-dynamic-bridge'
