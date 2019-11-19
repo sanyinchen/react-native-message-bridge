@@ -4,13 +4,16 @@ import com.facebook.soloader.SoLoader;
 
 public class BridgeLoad {
     static {
-        SoLoader.loadLibrary("jscexecutor");
+        SoLoader.loadLibrary("corebridge");
     }
 
     public BridgeLoad() {
-      //  initHybrid()
+        //  initHybrid()
     }
 
 
-   // private static native HybridData initHybrid(ReadableNativeMap jscConfig);
+    public native String getHelloDynamicStr();
+
+
+    // private static native HybridData initHybrid(ReadableNativeMap jscConfig);
 }

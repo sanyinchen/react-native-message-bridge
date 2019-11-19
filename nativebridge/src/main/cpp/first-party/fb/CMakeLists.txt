@@ -32,7 +32,7 @@ set(LOCAL_SRC_FILES assert.cpp
         lyra/lyra.cpp
         onload.cpp)
 
-include_directories("./include/")
+include_directories("include")
 
 add_library(fb SHARED ${LOCAL_SRC_FILES})
 

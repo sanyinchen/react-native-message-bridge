@@ -5,19 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package lib.fb.jni.java;
-
 import com.facebook.proguard.annotations.DoNotStrip;
 
 @DoNotStrip
-public class UnknownCppException extends CppException {
-  @DoNotStrip
-  public UnknownCppException() {
-    super("Unknown");
-  }
+public class CppSystemErrorException extends CppException {
+  int errorCode;
 
   @DoNotStrip
-  public UnknownCppException(String message) {
+  public CppSystemErrorException(String message, int errorCode) {
     super(message);
+    this.errorCode = errorCode;
+  }
+
+  public int getErrorCode() {
+    return errorCode;
   }
 }

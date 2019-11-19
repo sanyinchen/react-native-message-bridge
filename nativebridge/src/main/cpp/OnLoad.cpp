@@ -11,18 +11,17 @@ namespace facebook {
         class DynamicHolder : public jni::HybridClass<DynamicHolder> {
 
         public:
-            static auto constexpr kJavaDescriptor = "Lcom/facebook/react/bridge/ReadableArray;";
+            static auto constexpr kJavaDescriptor = "Lcom/sanyinchen/nativebridge/BridgeLoad;";
 
-            static const char *getHelloDynamicStr() {
-                std::string str = "hello jni";
+            static const char *getHelloDynamicStr(jni::alias_ref<jclass>) {
+                std::string str = "123";
                 return str.c_str();
             }
 
             static void registerNatives() {
                 registerHybrid(
                         {
-                                makeNativeMethod(kJavaDescriptor, "getHelloDynamicStr",
-                                                 getHelloDynamicStr)
+                                makeNativeMethod("getHelloDynamicStr", getHelloDynamicStr)
                         });
             }
 

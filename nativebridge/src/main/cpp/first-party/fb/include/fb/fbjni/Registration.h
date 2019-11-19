@@ -70,12 +70,13 @@ struct CriticalMethod<R(*)(Args...)> {
       ::facebook::jni::detail::exceptionWrapJNIMethod<decltype(&func), &func>(&func) }
 
 #define makeNativeMethod3(name, desc, func)                             \
-  { name "", desc,::facebook::jni::detail::exceptionWrapJNIMethod<decltype(&func), &func>(&func) }
+  { name "", desc,                                                      \
+      ::facebook::jni::detail::exceptionWrapJNIMethod<decltype(&func), &func>(&func) }
 
 // Variadic template hacks to get macros with different numbers of
 // arguments. Usage instructions are in CoreClasses.h.
 #define makeNativeMethodN(a, b, c, count, ...) makeNativeMethod ## count
-#define makeNativeMethod(...) makeNativeMethod2(__VA_ARGS__)
+#define makeNativeMethod(...) makeNativeMethodN(__VA_ARGS__, 3, 2)(__VA_ARGS__)
 
 
 // FAST CALLS / CRITICAL CALLS

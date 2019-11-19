@@ -5,10 +5,13 @@ set(FOLLY_FLAGS "${FOLLY_FLAGS} -DFOLLY_NO_CONFIG -DFOLLY_HAVE_CLOCK_GETTIME -DF
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FOLLY_FLAGS}")
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
 
-include_directories(./core)
-include_directories(./core/common)
 
 file(GLOB SOURCE *.cpp)
+
+
 add_library(corebridge
         SHARED
         ${SOURCE})
+
+target_link_libraries(corebridge
+        fb)

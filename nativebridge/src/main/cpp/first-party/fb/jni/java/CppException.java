@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package lib.fb.jni.java;
-
 import com.facebook.proguard.annotations.DoNotStrip;
 
 @DoNotStrip

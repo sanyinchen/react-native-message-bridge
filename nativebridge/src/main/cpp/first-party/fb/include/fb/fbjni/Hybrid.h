@@ -183,6 +183,22 @@ protected:
     javaClassStatic()->registerNatives(methods);
   }
 
+  static local_ref<detail::HybridData> makeHybridData(std::unique_ptr<T> cxxPart) {
+    auto hybridData = detail::HybridData::create();
+    setNativePointer(hybridData, std::move(cxxPart));
+    return hybridData;
+  }
+
+  template <typename... Args>
+  static local_ref<detail::HybridData> makeCxxInstance(Args&&... args) {
+    return makeHybridData(std::unique_ptr<T>(new T(std::forward<Args>(args)...)));
+  }
+
+  template <typename... Args>
+  static void setCxxInstance(alias_ref<jhybridobject> o, Args&&... args) {
+    setNativePointer(o, std::unique_ptr<T>(new T(std::forward<Args>(args)...)));
+  }
+
 public:
   // Factory method for creating a hybrid object where the arguments
   // are used to initialize the C++ part directly without passing them
