@@ -14,30 +14,29 @@
 static LogHandler gLogHandler;
 
 void setLogHandler(LogHandler logHandler) {
-  gLogHandler = logHandler;
+    gLogHandler = logHandler;
 }
 
-int fb_printLog(int prio, const char *tag,  const char *fmt, ...) {
-  char logBuffer[LOG_BUFFER_SIZE];
+int fb_printLog(int prio, const char *tag, const char *fmt, ...) {
+    char logBuffer[LOG_BUFFER_SIZE];
 
-  va_list va_args;
-  va_start(va_args, fmt);
-  int result = vsnprintf(logBuffer, sizeof(logBuffer), fmt, va_args);
-  va_end(va_args);
-  if (gLogHandler != NULL) {
-      gLogHandler(prio, tag, logBuffer);
-  }
-  __android_log_write(prio, tag, logBuffer);
-  return result;
+    va_list va_args;
+    va_start(va_args, fmt);
+    int result = vsnprintf(logBuffer, sizeof(logBuffer), fmt, va_args);
+    va_end(va_args);
+    if (gLogHandler != NULL) {
+        gLogHandler(prio, tag, logBuffer);
+    }
+    __android_log_write(prio, tag, logBuffer);
+    return result;
 }
 
-void logPrintByDelims(int priority, const char* tag, const char* delims,
-        const char* msg, ...)
-{
+void logPrintByDelims(int priority, const char *tag, const char *delims,
+                      const char *msg, ...) {
     va_list ap;
     char buf[32768];
-    char* context;
-    char* tok;
+    char *context;
+    char *tok;
 
     va_start(ap, msg);
     vsnprintf(buf, sizeof(buf), msg, ap);
