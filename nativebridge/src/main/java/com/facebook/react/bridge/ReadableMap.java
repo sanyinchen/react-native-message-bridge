@@ -23,12 +23,19 @@ public interface ReadableMap {
   boolean getBoolean(@Nonnull String name);
   double getDouble(@Nonnull String name);
   int getInt(@Nonnull String name);
-  @Nullable String getString(@Nonnull String name);
-  @Nullable ReadableArray getArray(@Nonnull String name);
-  @Nullable ReadableMap getMap(@Nonnull String name);
-  @Nonnull Dynamic getDynamic(@Nonnull String name);
-  @Nonnull ReadableType getType(@Nonnull String name);
-  @Nonnull ReadableMapKeySetIterator keySetIterator();
-  @Nonnull HashMap<String, Object> toHashMap();
+  @Nullable
+  String getString(@Nonnull String name);
+  @Nullable
+  ReadableArray getArray(@Nonnull String name);
+  @Nullable
+  ReadableMap getMap(@Nonnull String name);
+  @Nonnull
+  Dynamic getDynamic(@Nonnull String name);
+  @Nonnull
+  ReadableType getType(@Nonnull String name);
+  @Nonnull
+  ReadableMapKeySetIterator keySetIterator();
+  @Nonnull
+  HashMap<String, Object> toHashMap();
 
 }

@@ -261,7 +261,7 @@ namespace folly {
 #ifdef NDEBUG
 constexpr auto kIsDebug = false;
 #else
-constexpr auto kIsDebug = true;
+constexpr auto kIsDebug = false;
 #endif
 } // namespace folly
 

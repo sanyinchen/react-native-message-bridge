@@ -5,8 +5,6 @@
 
 package com.facebook.jni;
 
-import android.util.Log;
-
 import com.facebook.proguard.annotations.DoNotStrip;
 import com.facebook.soloader.SoLoader;
 

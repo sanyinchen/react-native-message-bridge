@@ -7,10 +7,8 @@ package com.facebook.react.bridge;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.NativeArray;
 
-import static com.facebook.react.bridge.Arguments.*;
+import static com.facebook.react.bridge.Arguments.fromJavaArgs;
 
 /**
  * Callback impl that calls directly into the cxx bridge. Created from C++.

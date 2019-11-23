@@ -9,6 +9,7 @@
 #include <iterator>
 #include <glog/logging.h>
 #include <folly/json.h>
+#include <folly/dynamic.h>
 
 #include "JsArgumentHelpers.h"
 #include "SystraceSection.h"

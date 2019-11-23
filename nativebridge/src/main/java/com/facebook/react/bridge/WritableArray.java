@@ -7,7 +7,6 @@
 
 package com.facebook.react.bridge;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**

@@ -9,6 +9,7 @@ package com.facebook.react.bridge;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.systrace.Systrace;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,7 +22,7 @@ public class NativeModuleRegistry {
   private final Map<String, ModuleHolder> mModules;
 
   public NativeModuleRegistry(
-      ReactApplicationContext reactApplicationContext, Map<String, ModuleHolder> modules) {
+          ReactApplicationContext reactApplicationContext, Map<String, ModuleHolder> modules) {
     mReactApplicationContext = reactApplicationContext;
     mModules = modules;
   }

@@ -10,11 +10,11 @@
 
 'use strict';
 
-const BatchedBridge = require('BatchedBridge');
+const BatchedBridge = require('./BatchedBridge');
 
 const invariant = require('invariant');
 
-import type {ExtendedError} from 'parseErrorStack';
+import type {ExtendedError} from '../polyfills/parseErrorStack';
 
 type ModuleConfig = [
   string /* name */,
@@ -167,7 +167,7 @@ if (global.nativeModuleProxy) {
     '__fbBatchedBridgeConfig is not set, cannot invoke native modules',
   );
 
-  const defineLazyObjectProperty = require('defineLazyObjectProperty');
+  const defineLazyObjectProperty = require('../polyfills/defineLazyObjectProperty');
   (bridgeConfig.remoteModuleConfig || []).forEach(
     (config: ModuleConfig, moduleID: number) => {
       // Initially this config will only contain the module name when running in JSC. The actual

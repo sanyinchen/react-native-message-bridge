@@ -30,7 +30,8 @@ public interface NativeModule {
    * @return the name of this module. This will be the name used to {@code require()} this module
    * from javascript.
    */
-  @Nonnull String getName();
+  @Nonnull
+  String getName();
 
   /**
    * This is called at the end of {@link CatalystApplicationFragment#createCatalystInstance()}

@@ -7,12 +7,12 @@
 
 package com.facebook.jni;
 
-import javax.annotation.Nullable;
+import com.facebook.proguard.annotations.DoNotStrip;
 
 import java.util.Iterator;
 import java.util.Map;
 
-import com.facebook.proguard.annotations.DoNotStrip;
+import javax.annotation.Nullable;
 
 /**
  * To iterate over a Map from C++ requires four calls per entry: hasNext(),
@@ -22,9 +22,14 @@ import com.facebook.proguard.annotations.DoNotStrip;
  */
 @DoNotStrip
 public class MapIteratorHelper {
-  @DoNotStrip private final Iterator<Map.Entry> mIterator;
-  @DoNotStrip private @Nullable Object mKey;
-  @DoNotStrip private @Nullable Object mValue;
+  @DoNotStrip
+  private final Iterator<Map.Entry> mIterator;
+  @DoNotStrip
+  private @Nullable
+  Object mKey;
+  @DoNotStrip
+  private @Nullable
+  Object mValue;
 
   @DoNotStrip
   public MapIteratorHelper(Map map) {

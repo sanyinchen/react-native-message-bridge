@@ -7,9 +7,10 @@
 
 package com.facebook.react.bridge;
 
-import javax.annotation.Nullable;
 
-import android.support.v4.util.Pools;
+import androidx.core.util.Pools;
+
+import javax.annotation.Nullable;
 
 /**
  * Implementation of Dynamic wrapping a ReadableArray.
@@ -17,7 +18,8 @@ import android.support.v4.util.Pools;
 public class DynamicFromArray implements Dynamic {
   private static final Pools.SimplePool<DynamicFromArray> sPool = new Pools.SimplePool<>(10);
 
-  private @Nullable ReadableArray mArray;
+  private @Nullable
+  ReadableArray mArray;
   private int mIndex = -1;
 
   // This is a pools object. Hide the constructor.

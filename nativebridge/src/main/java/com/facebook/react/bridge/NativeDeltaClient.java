@@ -7,9 +7,9 @@
 
 package com.facebook.react.bridge;
 
-import java.nio.channels.ReadableByteChannel;
-
 import com.facebook.jni.HybridData;
+
+import java.nio.channels.ReadableByteChannel;
 
 public class NativeDeltaClient {
   static {

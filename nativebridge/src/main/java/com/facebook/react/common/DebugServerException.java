@@ -7,16 +7,14 @@
 
 package com.facebook.react.common;
 
-import javax.annotation.Nullable;
-
-import java.io.IOException;
-
 import android.text.TextUtils;
 
 import com.facebook.common.logging.FLog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import javax.annotation.Nullable;
 
 /**
  * Tracks errors connecting to or received from the debug server.
@@ -56,7 +54,8 @@ public class DebugServerException extends RuntimeException {
    * @param str json string returned by the debug server
    * @return A DebugServerException or null if the string is not of proper form.
    */
-  @Nullable public static DebugServerException parse(String str) {
+  @Nullable
+  public static DebugServerException parse(String str) {
     if (TextUtils.isEmpty(str)) {
       return null;
     }

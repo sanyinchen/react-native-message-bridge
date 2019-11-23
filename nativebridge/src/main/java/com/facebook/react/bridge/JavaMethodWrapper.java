@@ -7,16 +7,18 @@
 
 package com.facebook.react.bridge;
 
-import static com.facebook.infer.annotation.Assertions.assertNotNull;
-import static com.facebook.systrace.Systrace.TRACE_TAG_REACT_JAVA_BRIDGE;
-
 import com.facebook.debug.holder.PrinterHolder;
 import com.facebook.debug.tags.ReactDebugOverlayTags;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.systrace.SystraceMessage;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import javax.annotation.Nullable;
+
+import static com.facebook.infer.annotation.Assertions.assertNotNull;
+import static com.facebook.systrace.Systrace.TRACE_TAG_REACT_JAVA_BRIDGE;
 
 public class JavaMethodWrapper implements NativeModule.NativeMethod {
 
@@ -25,7 +27,8 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
       return 1;
     }
 
-    public abstract @Nullable T extractArgument(
+    public abstract @Nullable
+    T extractArgument(
       JSInstance jsInstance, ReadableArray jsArguments, int atIndex);
   }
 
@@ -104,7 +107,8 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
   static final private ArgumentExtractor<Callback> ARGUMENT_EXTRACTOR_CALLBACK =
     new ArgumentExtractor<Callback>() {
       @Override
-      public @Nullable Callback extractArgument(
+      public @Nullable
+      Callback extractArgument(
         JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
         if (jsArguments.isNull(atIndex)) {
           return null;
@@ -205,10 +209,14 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
   private final JavaModuleWrapper mModuleWrapper;
   private String mType = BaseJavaModule.METHOD_TYPE_ASYNC;
   private boolean mArgumentsProcessed = false;
-  private @Nullable ArgumentExtractor[] mArgumentExtractors;
-  private @Nullable String mSignature;
-  private @Nullable Object[] mArguments;
-  private @Nullable int mJSArgumentsNeeded;
+  private @Nullable
+  ArgumentExtractor[] mArgumentExtractors;
+  private @Nullable
+  String mSignature;
+  private @Nullable
+  Object[] mArguments;
+  private @Nullable
+  int mJSArgumentsNeeded;
 
   public JavaMethodWrapper(JavaModuleWrapper module, Method method, boolean isSync) {
     mModuleWrapper = module;

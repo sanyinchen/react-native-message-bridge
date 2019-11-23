@@ -6,16 +6,15 @@
  */
 package com.facebook.react.bridge;
 
-import java.lang.reflect.Array;
+import android.os.Bundle;
 
+import java.lang.reflect.Array;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nullable;
-
-import android.os.Bundle;
 
 public class Arguments {
   private static Object makeNativeObject(Object object) {

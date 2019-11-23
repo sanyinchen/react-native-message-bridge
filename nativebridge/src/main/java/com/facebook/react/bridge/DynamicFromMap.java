@@ -7,23 +7,26 @@
 
 package com.facebook.react.bridge;
 
-import javax.annotation.Nullable;
 
-import android.support.v4.util.Pools.SimplePool;
+import androidx.core.util.Pools;
+
+import javax.annotation.Nullable;
 
 /**
  * Implementation of Dynamic wrapping a ReadableMap.
  */
 public class DynamicFromMap implements Dynamic {
-  private static final ThreadLocal<SimplePool<DynamicFromMap>> sPool = new ThreadLocal<SimplePool<DynamicFromMap>>() {
+  private static final ThreadLocal<Pools.SimplePool<DynamicFromMap>> sPool = new ThreadLocal<Pools.SimplePool<DynamicFromMap>>() {
     @Override
-    protected SimplePool<DynamicFromMap> initialValue() {
-      return new SimplePool<>(10);
+    protected Pools.SimplePool<DynamicFromMap> initialValue() {
+      return new Pools.SimplePool<>(10);
     }
   };
 
-  private @Nullable ReadableMap mMap;
-  private @Nullable String mName;
+  private @Nullable
+  ReadableMap mMap;
+  private @Nullable
+  String mName;
 
   // This is a pools object. Hide the constructor.
   private DynamicFromMap() {}

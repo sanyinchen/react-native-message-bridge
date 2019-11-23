@@ -7,7 +7,7 @@
 
 package com.facebook.react.bridge;
 
-import javax.annotation.Nullable;
+import com.facebook.react.common.build.ReactBuildConfig;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.facebook.react.common.build.ReactBuildConfig;
+import javax.annotation.Nullable;
 
 /**
  * Class responsible for holding all the {@link JavaScriptModule}s.  Uses Java proxy objects
@@ -49,7 +49,8 @@ public final class JavaScriptModuleRegistry {
   private static class JavaScriptModuleInvocationHandler implements InvocationHandler {
     private final CatalystInstance mCatalystInstance;
     private final Class<? extends JavaScriptModule> mModuleInterface;
-    private @Nullable String mName;
+    private @Nullable
+    String mName;
 
     public JavaScriptModuleInvocationHandler(
         CatalystInstance catalystInstance,
@@ -87,7 +88,8 @@ public final class JavaScriptModuleRegistry {
     }
 
     @Override
-    public @Nullable Object invoke(Object proxy, Method method, @Nullable Object[] args) throws Throwable {
+    public @Nullable
+    Object invoke(Object proxy, Method method, @Nullable Object[] args) throws Throwable {
       NativeArray jsArgs = args != null
         ? Arguments.fromJavaArgs(args)
         : new WritableNativeArray();

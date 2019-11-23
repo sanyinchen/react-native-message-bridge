@@ -7,10 +7,11 @@
 
 package com.facebook.react.bridge;
 
+import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
-import com.facebook.react.config.ReactFeatureFlags;
+
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -31,9 +32,12 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
     super(hybridData);
   }
 
-  private @Nullable String[] mKeys;
-  private @Nullable HashMap<String,Object> mLocalMap;
-  private @Nullable HashMap<String,ReadableType> mLocalTypeMap;
+  private @Nullable
+  String[] mKeys;
+  private @Nullable
+  HashMap<String, Object> mLocalMap;
+  private @Nullable
+  HashMap<String,ReadableType> mLocalTypeMap;
   private static int mJniCallCounter;
   public static void setUseNativeAccessor(boolean useNativeAccessor) {
     ReactFeatureFlags.useMapNativeAccessor = useNativeAccessor;
@@ -42,7 +46,7 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
     return mJniCallCounter;
   }
 
-  private HashMap<String,Object> getLocalMap() {
+  private HashMap<String, Object> getLocalMap() {
     // Fast return for the common case
     if (mLocalMap != null) {
       return mLocalMap;
@@ -68,7 +72,8 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
   private native String[] importKeys();
   private native Object[] importValues();
 
-  private @Nonnull HashMap<String,ReadableType> getLocalTypeMap() {
+  private @Nonnull
+  HashMap<String,ReadableType> getLocalTypeMap() {
     // Fast and non-blocking return for common case
     if (mLocalTypeMap != null) {
       return mLocalTypeMap;
@@ -117,7 +122,8 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
   }
   private native boolean isNullNative(@Nonnull String name);
 
-  private @Nonnull Object getValue(@Nonnull String name) {
+  private @Nonnull
+  Object getValue(@Nonnull String name) {
     if (hasKey(name) && !(isNull(name))) {
       return Assertions.assertNotNull(getLocalMap().get(name));
     }
@@ -130,14 +136,16 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
     return (T) value;
   }
 
-  private @Nullable Object getNullableValue(String name) {
+  private @Nullable
+  Object getNullableValue(String name) {
     if (hasKey(name)) {
       return getLocalMap().get(name);
     }
     throw new NoSuchKeyException(name);
   }
 
-  private @Nullable <T> T getNullableValue(String name, Class<T> type) {
+  private @Nullable
+  <T> T getNullableValue(String name, Class<T> type) {
     Object value = getNullableValue(name);
     checkInstance(name, value, type);
     return (T) value;
@@ -184,7 +192,8 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
   private native int getIntNative(String name);
 
   @Override
-  public @Nullable String getString(@Nonnull String name) {
+  public @Nullable
+  String getString(@Nonnull String name) {
     if (ReactFeatureFlags.useMapNativeAccessor) {
       mJniCallCounter++;
       return getStringNative(name);
@@ -194,7 +203,8 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
   private native String getStringNative(String name);
 
   @Override
-  public @Nullable ReadableArray getArray(@Nonnull String name) {
+  public @Nullable
+  ReadableArray getArray(@Nonnull String name) {
     if (ReactFeatureFlags.useMapNativeAccessor) {
       mJniCallCounter++;
       return getArrayNative(name);
@@ -204,7 +214,8 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
   private native ReadableNativeArray getArrayNative(String name);
 
   @Override
-  public @Nullable ReadableNativeMap getMap(@Nonnull String name) {
+  public @Nullable
+  ReadableNativeMap getMap(@Nonnull String name) {
     if (ReactFeatureFlags.useMapNativeAccessor) {
       mJniCallCounter++;
       return getMapNative(name);
@@ -214,7 +225,8 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
   private native ReadableNativeMap getMapNative(String name);
 
   @Override
-  public @Nonnull ReadableType getType(@Nonnull String name) {
+  public @Nonnull
+  ReadableType getType(@Nonnull String name) {
     if (ReactFeatureFlags.useMapNativeAccessor) {
       mJniCallCounter++;
       return getTypeNative(name);
@@ -227,17 +239,20 @@ public class ReadableNativeMap extends NativeMap implements ReadableMap {
   private native ReadableType getTypeNative(String name);
 
   @Override
-  public @Nonnull Dynamic getDynamic(@Nonnull String name) {
+  public @Nonnull
+  Dynamic getDynamic(@Nonnull String name) {
     return DynamicFromMap.create(this, name);
   }
 
   @Override
-  public @Nonnull ReadableMapKeySetIterator keySetIterator() {
+  public @Nonnull
+  ReadableMapKeySetIterator keySetIterator() {
     return new ReadableNativeMapKeySetIterator(this);
   }
 
   @Override
-  public @Nonnull HashMap<String, Object> toHashMap() {
+  public @Nonnull
+  HashMap<String, Object> toHashMap() {
     if (ReactFeatureFlags.useMapNativeAccessor) {
       ReadableMapKeySetIterator iterator = keySetIterator();
       HashMap<String, Object> hashMap = new HashMap<>();

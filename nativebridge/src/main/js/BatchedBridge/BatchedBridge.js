@@ -10,7 +10,7 @@
 
 'use strict';
 
-const MessageQueue = require('MessageQueue');
+const MessageQueue = require('./MessageQueue');
 
 const BatchedBridge = new MessageQueue();
 
@@ -21,8 +21,9 @@ const BatchedBridge = new MessageQueue();
 // MessageQueue to its minimal features and embed that in the native runtime.
 
 Object.defineProperty(global, '__fbBatchedBridge', {
-  configurable: true,
-  value: BatchedBridge,
+    configurable: true,
+    value: BatchedBridge,
 });
 
+global.__DEV__ = true
 module.exports = BatchedBridge;

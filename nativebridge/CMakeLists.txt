@@ -1,10 +1,39 @@
 cmake_minimum_required(VERSION 3.4.1)
 project(nativebridge)
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fexceptions -fno-omit-frame-pointer -frtti -Wno-sign-compare")
+set(FOLLY_FLAGS "${FOLLY_FLAGS} -DFOLLY_NO_CONFIG -DFOLLY_HAVE_CLOCK_GETTIME -DFOLLY_HAVE_MEMRCHR -DFOLLY_USE_LIBCPP -DFOLLY_HAVE_XSI_STRERROR_R=1")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -Wall -Werror")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FOLLY_FLAGS}")
+set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
 
-
+include_directories(src/main/cpp)
 include_directories(src/main/cpp/first-party/fb/include)
 include_directories(src/main/cpp/folly)
+include_directories(src/main/cpp/folly/folly)
+include_directories(src/main/cpp/jscexecutor)
+include_directories(src/main/cpp/cxxreact)
+include_directories(src/main/cpp/double-conversion)
+include_directories(src/main/cpp/glog)
+include_directories(src/main/cpp/glog/glog/exported)
+include_directories(src/main/cpp/boost/boost_1_63_0)
+include_directories(src/main/cpp/first-party/fbgloginit)
+include_directories(src/main/cpp/jsi)
+include_directories(src/main/cpp/jsc)
 
+
+
+add_subdirectory(src/main/cpp/jsc)
 add_subdirectory(src/main/cpp/first-party/fb)
-add_subdirectory(src/main/cpp)
+add_subdirectory(src/main/cpp/jscexecutor)
+add_subdirectory(src/main/cpp/jsi/jsi)
+add_subdirectory(src/main/cpp/boost)
+add_subdirectory(src/main/cpp/glog/glog)
+add_subdirectory(src/main/cpp/cxxreact/cxxreact)
+add_subdirectory(src/main/cpp/folly/folly)
+add_subdirectory(src/main/cpp/double-conversion/double-conversion)
+add_subdirectory(src/main/cpp/react/jni)
+add_subdirectory(src/main/cpp/first-party/fbgloginit)
+add_subdirectory(src/main/cpp/jsiexecutor)
+
+

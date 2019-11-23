@@ -1,6 +1,6 @@
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
- *
+ * <p>
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
@@ -9,8 +9,7 @@ package com.facebook.react;
 
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.uimanager.UIManagerModule;
-import com.facebook.react.uimanager.ViewManager;
+
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -25,21 +24,16 @@ import javax.annotation.Nonnull;
  * require implementation of that JS module so that it gets bundled)
  * 3) Registering custom native views (view managers) and custom event types
  * 4) Registering natively packaged assets/resources (e.g. images) exposed to JS
- *
+ * <p>
  * TODO(6788500, 6788507): Implement support for adding custom views, events and resources
  */
 public interface ReactPackage {
 
-  /**
-   * @param reactContext react application context that can be used to create modules
-   * @return list of native modules to register with the newly created catalyst instance
-   */
-  @Nonnull
-  List<NativeModule> createNativeModules(@Nonnull ReactApplicationContext reactContext);
+    /**
+     * @param reactContext react application context that can be used to create modules
+     * @return list of native modules to register with the newly created catalyst instance
+     */
+    @Nonnull
+    List<NativeModule> createNativeModules(@Nonnull ReactApplicationContext reactContext);
 
-  /**
-   * @return a list of view managers that should be registered with {@link UIManagerModule}
-   */
-  @Nonnull
-  List<ViewManager> createViewManagers(@Nonnull ReactApplicationContext reactContext);
 }

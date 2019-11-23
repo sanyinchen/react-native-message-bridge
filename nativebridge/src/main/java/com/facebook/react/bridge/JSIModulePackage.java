@@ -15,7 +15,7 @@ import java.util.List;
 public interface JSIModulePackage {
 
   /**
-   * @return a {@link List< JSIModuleSpec >} that contain the list of JSI Modules.
+   * @return a {@link List < JSIModuleSpec >} that contain the list of JSI Modules.
    */
   List<JSIModuleSpec> getJSIModules(ReactApplicationContext reactApplicationContext, JavaScriptContextHolder jsContext);
 

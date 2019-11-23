@@ -9,6 +9,7 @@ package com.facebook.react.bridge;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
+
 import javax.annotation.Nullable;
 
 /**
@@ -38,7 +39,8 @@ public class ProxyJavaScriptExecutor extends JavaScriptExecutor {
     ReactBridge.staticInit();
   }
 
-  private @Nullable JavaJSExecutor mJavaJSExecutor;
+  private @Nullable
+  JavaJSExecutor mJavaJSExecutor;
 
   /**
    * Create {@link ProxyJavaScriptExecutor} instance

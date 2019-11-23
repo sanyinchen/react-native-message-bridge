@@ -7,13 +7,11 @@
 
 package com.facebook.react.bridge.queue;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.Future;
-
-import android.os.SystemClock;
 import android.os.Looper;
 import android.os.Process;
+import android.os.SystemClock;
 import android.util.Pair;
+
 import com.facebook.common.logging.FLog;
 import com.facebook.proguard.annotations.DoNotStrip;
 import com.facebook.react.bridge.AssertionException;
@@ -21,6 +19,9 @@ import com.facebook.react.bridge.SoftAssertions;
 import com.facebook.react.bridge.UiThreadUtil;
 import com.facebook.react.common.ReactConstants;
 import com.facebook.react.common.futures.SimpleSettableFuture;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 /**
  * Encapsulates a Thread that has a {@link Looper} running on it that can accept Runnables.

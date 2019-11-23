@@ -40,9 +40,9 @@ public interface JSBundleLoaderDelegate {
    * @param loadSynchronously
    */
   void loadScriptFromDeltaBundle(
-    String sourceURL,
-    NativeDeltaClient deltaClient,
-    boolean loadSynchronously);
+          String sourceURL,
+          NativeDeltaClient deltaClient,
+          boolean loadSynchronously);
 
   /**
    * This API is used in situations where the JS bundle is being executed not on

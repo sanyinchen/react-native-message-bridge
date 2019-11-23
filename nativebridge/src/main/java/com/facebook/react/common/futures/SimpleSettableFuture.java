@@ -7,13 +7,13 @@
 
 package com.facebook.react.common.futures;
 
-import javax.annotation.Nullable;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import javax.annotation.Nullable;
 
 /**
  * A super simple Future-like class that can safely notify another Thread when a value is ready.
@@ -21,8 +21,10 @@ import java.util.concurrent.TimeoutException;
  */
 public class SimpleSettableFuture<T> implements Future<T> {
   private final CountDownLatch mReadyLatch = new CountDownLatch(1);
-  private @Nullable T mResult;
-  private @Nullable Exception mException;
+  private @Nullable
+  T mResult;
+  private @Nullable
+  Exception mException;
 
   /**
    * Sets the result. If another thread has called {@link #get}, they will immediately receive the
@@ -60,7 +62,8 @@ public class SimpleSettableFuture<T> implements Future<T> {
   }
 
   @Override
-  public @Nullable T get() throws InterruptedException, ExecutionException {
+  public @Nullable
+  T get() throws InterruptedException, ExecutionException {
     mReadyLatch.await();
     if (mException != null) {
       throw new ExecutionException(mException);
@@ -77,8 +80,9 @@ public class SimpleSettableFuture<T> implements Future<T> {
    * are in the 1% of cases where you actually want to handle that.
    */
   @Override
-  public @Nullable T get(long timeout, TimeUnit unit) throws
-      InterruptedException, ExecutionException, TimeoutException {
+  public @Nullable
+  T get(long timeout, TimeUnit unit) throws
+          InterruptedException, ExecutionException, TimeoutException {
     if (!mReadyLatch.await(timeout, unit)) {
       throw new TimeoutException("Timed out waiting for result");
     }
@@ -93,7 +97,8 @@ public class SimpleSettableFuture<T> implements Future<T> {
    * Convenience wrapper for {@link #get()} that re-throws get()'s Exceptions as
    * RuntimeExceptions.
    */
-  public @Nullable T getOrThrow() {
+  public @Nullable
+  T getOrThrow() {
     try {
       return get();
     } catch (InterruptedException | ExecutionException e) {
@@ -105,7 +110,8 @@ public class SimpleSettableFuture<T> implements Future<T> {
    * Convenience wrapper for {@link #get(long, TimeUnit)} that re-throws get()'s Exceptions as
    * RuntimeExceptions.
    */
-  public @Nullable T getOrThrow(long timeout, TimeUnit unit) {
+  public @Nullable
+  T getOrThrow(long timeout, TimeUnit unit) {
     try {
       return get(timeout, unit);
     } catch (InterruptedException | ExecutionException | TimeoutException e) {

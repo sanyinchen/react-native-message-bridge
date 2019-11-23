@@ -7,14 +7,8 @@
 
 package com.facebook.react.bridge;
 
-import static com.facebook.systrace.Systrace.TRACE_TAG_REACT_JAVA_BRIDGE;
-
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LifecycleRegistry;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.facebook.common.logging.FLog;
@@ -32,8 +26,6 @@ import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.systrace.Systrace;
 import com.facebook.systrace.TraceListener;
 
-import java.lang.annotation.Annotation;
-import java.lang.annotation.Native;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,6 +34,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.Nullable;
+
+import static com.facebook.systrace.Systrace.TRACE_TAG_REACT_JAVA_BRIDGE;
 
 /**
  * This provides an implementation of the public CatalystInstance instance.  It is public because

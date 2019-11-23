@@ -8,6 +8,7 @@
 package com.facebook.react.bridge;
 
 import com.facebook.infer.annotation.Assertions;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

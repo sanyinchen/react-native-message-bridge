@@ -7,17 +7,18 @@
 
 package com.facebook.react.bridge;
 
-import javax.annotation.Nullable;
-
 import android.os.Handler;
 import android.os.Looper;
+
+import javax.annotation.Nullable;
 
 /**
  * Utility for interacting with the UI thread.
  */
 public class UiThreadUtil {
 
-  @Nullable private static Handler sMainHandler;
+  @Nullable
+  private static Handler sMainHandler;
 
   /**
    * @return {@code true} if the current thread is the UI thread.

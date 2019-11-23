@@ -17,7 +17,7 @@ let _inGuard = 0;
  * ExceptionsManager is configured.
  */
 let _globalHandler = function onError(e) {
-  throw e;
+    throw e;
 };
 
 /**
@@ -29,58 +29,59 @@ let _globalHandler = function onError(e) {
  * set) globally before requiring anything.
  */
 const ErrorUtils = {
-  setGlobalHandler(fun) {
-    _globalHandler = fun;
-  },
-  getGlobalHandler() {
-    return _globalHandler;
-  },
-  reportError(error) {
-    _globalHandler && _globalHandler(error);
-  },
-  reportFatalError(error) {
-    _globalHandler && _globalHandler(error, true);
-  },
-  applyWithGuard(fun, context, args) {
-    try {
-      _inGuard++;
-      return fun.apply(context, args);
-    } catch (e) {
-      ErrorUtils.reportError(e);
-    } finally {
-      _inGuard--;
-    }
-    return null;
-  },
-  applyWithGuardIfNeeded(fun, context, args) {
-    if (ErrorUtils.inGuard()) {
-      return fun.apply(context, args);
-    } else {
-      ErrorUtils.applyWithGuard(fun, context, args);
-    }
-    return null;
-  },
-  inGuard() {
-    return _inGuard;
-  },
-  guard(fun, name, context) {
-    if (typeof fun !== 'function') {
-      console.warn('A function must be passed to ErrorUtils.guard, got ', fun);
-      return null;
-    }
-    name = name || fun.name || '<generated guard>';
-    function guarded() {
-      return ErrorUtils.applyWithGuard(
-        fun,
-        context || this,
-        arguments,
-        null,
-        name,
-      );
-    }
+    setGlobalHandler(fun) {
+        _globalHandler = fun;
+    },
+    getGlobalHandler() {
+        return _globalHandler;
+    },
+    reportError(error) {
+        _globalHandler && _globalHandler(error);
+    },
+    reportFatalError(error) {
+        _globalHandler && _globalHandler(error, true);
+    },
+    applyWithGuard(fun, context, args) {
+        try {
+            _inGuard++;
+            return fun.apply(context, args);
+        } catch (e) {
+            ErrorUtils.reportError(e);
+        } finally {
+            _inGuard--;
+        }
+        return null;
+    },
+    applyWithGuardIfNeeded(fun, context, args) {
+        if (ErrorUtils.inGuard()) {
+            return fun.apply(context, args);
+        } else {
+            ErrorUtils.applyWithGuard(fun, context, args);
+        }
+        return null;
+    },
+    inGuard() {
+        return _inGuard;
+    },
+    guard(fun, name, context) {
+        if (typeof fun !== 'function') {
+            console.warn('A function must be passed to ErrorUtils.guard, got ', fun);
+            return null;
+        }
+        name = name || fun.name || '<generated guard>';
 
-    return guarded;
-  },
+        function guarded() {
+            return ErrorUtils.applyWithGuard(
+                fun,
+                context || this,
+                arguments,
+                null,
+                name,
+            );
+        }
+
+        return guarded;
+    },
 };
 
-global.ErrorUtils = ErrorUtils;
+module.exports = ErrorUtils

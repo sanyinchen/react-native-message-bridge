@@ -1,16 +1,16 @@
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fexceptions -frtti -Wno-unused-lambda-capture")
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-parameter -fexceptions -fno-omit-frame-pointer")
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
 
-set(LOCAL_LDLIBS "-landroid")
-
-include_directories(../../first-party/fb/include)
+include_directories(./)
 
 file(GLOB SOURCE *.cpp)
-add_library(reactnativejni
+
+add_library(glog_init
         SHARED
         ${SOURCE})
 
-target_link_libraries(reactnativejni
-        fb
-        reactnative)
+target_link_libraries(glog_init
+        log
+        glog)

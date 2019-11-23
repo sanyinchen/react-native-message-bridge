@@ -10,8 +10,10 @@ package com.facebook.react.bridge;
 import com.facebook.proguard.annotations.DoNotStrip;
 import com.facebook.react.bridge.queue.ReactQueueConfiguration;
 import com.facebook.react.common.annotations.VisibleForTesting;
+
 import java.util.Collection;
 import java.util.List;
+
 import javax.annotation.Nullable;
 
 /**
@@ -31,19 +33,21 @@ public interface CatalystInstance
    * Return the source URL of the JS Bundle that was run, or {@code null} if no JS
    * bundle has been run yet.
    */
-  @Nullable String getSourceURL();
+  @Nullable
+  String getSourceURL();
 
   // This is called from java code, so it won't be stripped anyway, but proguard will rename it,
   // which this prevents.
-  @Override @DoNotStrip
+  @Override
+  @DoNotStrip
   void invokeCallback(
-      int callbackID,
-      NativeArrayInterface arguments);
+          int callbackID,
+          NativeArrayInterface arguments);
   @DoNotStrip
   void callFunction(
-      String module,
-      String method,
-      NativeArray arguments);
+          String module,
+          String method,
+          NativeArray arguments);
   /**
    * Destroys this catalyst instance, waiting for any other threads in ReactQueueConfiguration
    * (besides the UI thread) to finish running. Must be called from the UI thread so that we can

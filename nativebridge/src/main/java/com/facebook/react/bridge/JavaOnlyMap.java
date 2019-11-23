@@ -120,12 +120,14 @@ public class JavaOnlyMap implements ReadableMap, WritableMap {
   }
 
   @Override
-  public @Nonnull Dynamic getDynamic(@Nonnull String name) {
+  public @Nonnull
+  Dynamic getDynamic(@Nonnull String name) {
     return DynamicFromMap.create(this, name);
   }
 
   @Override
-  public @Nonnull ReadableType getType(@Nonnull String name) {
+  public @Nonnull
+  ReadableType getType(@Nonnull String name) {
     Object value = mBackingMap.get(name);
     if (value == null) {
       return ReadableType.Null;
@@ -148,7 +150,8 @@ public class JavaOnlyMap implements ReadableMap, WritableMap {
   }
 
   @Override
-  public @Nonnull ReadableMapKeySetIterator keySetIterator() {
+  public @Nonnull
+  ReadableMapKeySetIterator keySetIterator() {
     return new ReadableMapKeySetIterator() {
       Iterator<String> mIterator = mBackingMap.keySet().iterator();
 
@@ -205,7 +208,8 @@ public class JavaOnlyMap implements ReadableMap, WritableMap {
   }
 
   @Override
-  public @Nonnull HashMap<String, Object> toHashMap() {
+  public @Nonnull
+  HashMap<String, Object> toHashMap() {
     return new HashMap<String, Object>(mBackingMap);
   }
 

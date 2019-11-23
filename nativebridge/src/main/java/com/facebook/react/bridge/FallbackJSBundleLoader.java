@@ -7,12 +7,12 @@
 
 package com.facebook.react.bridge;
 
+import com.facebook.common.logging.FLog;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Stack;
-
-import com.facebook.common.logging.FLog;
 
 /**
  * FallbackJSBundleLoader

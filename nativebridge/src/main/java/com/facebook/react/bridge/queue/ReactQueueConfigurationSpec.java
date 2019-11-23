@@ -9,9 +9,9 @@ package com.facebook.react.bridge.queue;
 
 import android.os.Build;
 
-import javax.annotation.Nullable;
-
 import com.facebook.infer.annotation.Assertions;
+
+import javax.annotation.Nullable;
 
 /**
  * Spec for creating a ReactQueueConfiguration. This exists so that CatalystInstance is able to
@@ -57,8 +57,10 @@ public class ReactQueueConfigurationSpec {
 
   public static class Builder {
 
-    private @Nullable MessageQueueThreadSpec mNativeModulesQueueSpec;
-    private @Nullable MessageQueueThreadSpec mJSQueueSpec;
+    private @Nullable
+    MessageQueueThreadSpec mNativeModulesQueueSpec;
+    private @Nullable
+    MessageQueueThreadSpec mJSQueueSpec;
 
     public Builder setNativeModulesQueueThreadSpec(MessageQueueThreadSpec spec) {
       Assertions.assertCondition(

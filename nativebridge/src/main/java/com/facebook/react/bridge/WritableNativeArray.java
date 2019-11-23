@@ -11,7 +11,6 @@ import com.facebook.infer.annotation.Assertions;
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**

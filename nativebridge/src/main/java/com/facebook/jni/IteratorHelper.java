@@ -9,9 +9,9 @@ package com.facebook.jni;
 
 import com.facebook.proguard.annotations.DoNotStrip;
 
-import javax.annotation.Nullable;
-
 import java.util.Iterator;
+
+import javax.annotation.Nullable;
 
 /**
  * To iterate over an Iterator from C++ requires two calls per entry: hasNext()
@@ -25,7 +25,8 @@ public class IteratorHelper {
 
   // This is private, but accessed via JNI.
   @DoNotStrip
-  private @Nullable Object mElement;
+  private @Nullable
+  Object mElement;
 
   @DoNotStrip
   public IteratorHelper(Iterator iterator) {

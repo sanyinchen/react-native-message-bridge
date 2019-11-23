@@ -14,8 +14,8 @@ package com.facebook.react.bridge;
  */
 public interface JSInstance {
   void invokeCallback(
-      int callbackID,
-      NativeArrayInterface arguments);
+          int callbackID,
+          NativeArrayInterface arguments);
   // TODO if this interface survives refactoring, think about adding
   // callFunction.
 }

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#include <folly/lang/Assume.h>
+#include <Assume.h>
 
-#include <glog/logging.h>
+#include "../../../glog/glog/exported/glog/logging.h"
 
 namespace folly {
 

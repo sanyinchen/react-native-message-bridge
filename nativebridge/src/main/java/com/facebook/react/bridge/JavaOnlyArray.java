@@ -98,7 +98,8 @@ public class JavaOnlyArray implements ReadableArray, WritableArray {
   }
 
   @Override
-  public @Nullable String getString(int index) {
+  public @Nullable
+  String getString(int index) {
     return (String) mBackingList.get(index);
   }
 
@@ -118,12 +119,14 @@ public class JavaOnlyArray implements ReadableArray, WritableArray {
   }
 
   @Override
-  public @Nonnull Dynamic getDynamic(int index) {
+  public @Nonnull
+  Dynamic getDynamic(int index) {
     return DynamicFromArray.create(this, index);
   }
 
   @Override
-  public @Nonnull ReadableType getType(int index) {
+  public @Nonnull
+  ReadableType getType(int index) {
     Object object = mBackingList.get(index);
 
     if (object == null) {
@@ -180,7 +183,8 @@ public class JavaOnlyArray implements ReadableArray, WritableArray {
   }
 
   @Override
-  public @Nonnull ArrayList<Object> toArrayList() {
+  public @Nonnull
+  ArrayList<Object> toArrayList() {
     return new ArrayList<Object>(mBackingList);
   }
 

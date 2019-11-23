@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.facebook.config;
+package com.facebook.react.config;
 
 /**
  * Hi there, traveller! This configuration class is not meant to be used by end-users of RN. It

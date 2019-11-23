@@ -7,9 +7,9 @@
 
 package com.facebook.react.bridge;
 
-import javax.annotation.Nullable;
-
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 /**
  * Base class for Catalyst native modules whose implementations are written in Java. Default
@@ -44,7 +44,8 @@ public abstract class BaseJavaModule implements NativeModule {
   /**
    * @return a map of constants this module exports to JS. Supports JSON types.
    */
-  public @Nullable Map<String, Object> getConstants() {
+  public @Nullable
+  Map<String, Object> getConstants() {
     return null;
   }
 

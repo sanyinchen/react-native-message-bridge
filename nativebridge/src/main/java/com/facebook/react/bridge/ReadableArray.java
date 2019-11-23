@@ -23,11 +23,17 @@ public interface ReadableArray {
   boolean getBoolean(int index);
   double getDouble(int index);
   int getInt(int index);
-  @Nullable String getString(int index);
-  @Nullable ReadableArray getArray(int index);
-  @Nullable ReadableMap getMap(int index);
-  @Nonnull Dynamic getDynamic(int index);
-  @Nonnull ReadableType getType(int index);
-  @Nonnull ArrayList<Object> toArrayList();
+  @Nullable
+  String getString(int index);
+  @Nullable
+  ReadableArray getArray(int index);
+  @Nullable
+  ReadableMap getMap(int index);
+  @Nonnull
+  Dynamic getDynamic(int index);
+  @Nonnull
+  ReadableType getType(int index);
+  @Nonnull
+  ArrayList<Object> toArrayList();
 
 }
