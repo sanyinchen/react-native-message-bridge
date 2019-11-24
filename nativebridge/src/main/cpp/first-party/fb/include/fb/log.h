@@ -308,7 +308,7 @@ int __android_log_print(int prio, const char *tag, const char *fmt, ...)
 #define IF_FBLOG(priority, tag) if (fb_testLog(ANDROID_##priority, tag))
 #endif
 
-typedef void (*LogHandler)(int priority, const char* tag, const char* message);
+typedef void (*LogHandler)(int priority, const char *tag, const char *message);
 FBEXPORT void setLogHandler(LogHandler logHandler);
 
 /*
@@ -316,11 +316,11 @@ FBEXPORT void setLogHandler(LogHandler logHandler);
  *
  * The stuff in the rest of this file should not be used directly.
  */
-FBEXPORT int fb_printLog(int prio, const char* tag, const char* fmt, ...)
+FBEXPORT int fb_printLog(int prio, const char *tag, const char *fmt, ...)
 #if defined(__GNUC__)
-    __attribute__((format(printf, 3, 4)))
+__attribute__((format(printf, 3, 4)))
 #endif
-    ;
+;
 
 #define fb_vprintLog(prio, cond, tag, fmt...) \
   __android_log_vprint(prio, tag, fmt)
@@ -338,9 +338,18 @@ FBEXPORT int fb_printLog(int prio, const char* tag, const char* fmt, ...)
 /*
  * FB extensions
  */
-void logPrintByDelims(int priority, const char* tag, const char* delims,
-                      const char* msg, ...);
+void logPrintByDelims(int priority, const char *tag, const char *delims,
+                      const char *msg, ...);
 
 #ifdef __cplusplus
 }
 #endif
+
+
+#define TAG "src_test" // 这个是自定义的LOG的标识
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,TAG ,__VA_ARGS__) // 定义LOGD类型
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,TAG ,__VA_ARGS__) // 定义LOGI类型
+#define LOGW(...) __android_log_print(ANDROID_LOG_WARN,TAG ,__VA_ARGS__) // 定义LOGW类型
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,TAG ,__VA_ARGS__) // 定义LOGE类型
+#define LOGF(...) __android_log_print(ANDROID_LOG_FATAL,TAG ,__VA_ARGS__) // 定义LOGF类型
+

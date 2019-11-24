@@ -12,7 +12,7 @@ public enum Bridge {
 
         ReactInstanceManager reactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(application)
-                .setJSBundleFile("js-bridge-bundle.js")
+                .setJSBundleFile("assets://js-bridge-bundle.js")
                 .setNativeModuleCallExceptionHandler(new NativeModuleCallExceptionHandler() {
                     @Override
                     public void handleException(Exception e) {

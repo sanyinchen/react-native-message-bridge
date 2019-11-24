@@ -25,5 +25,4 @@ Object.defineProperty(global, '__fbBatchedBridge', {
     value: BatchedBridge,
 });
 
-global.__DEV__ = true
 module.exports = BatchedBridge;
