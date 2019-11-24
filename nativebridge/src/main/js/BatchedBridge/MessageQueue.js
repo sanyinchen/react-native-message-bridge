@@ -64,11 +64,11 @@ class MessageQueue {
         this._eventLoopStartTime = Date.now();
         this._immediatesCallback = null;
 
-        // if (!!__DEV__) {
-        //     this._debugInfo = {};
-        //     this._remoteModuleTable = {};
-        //     this._remoteMethodTable = {};
-        // }
+        if (__DEV__) {
+            this._debugInfo = {};
+            this._remoteModuleTable = {};
+            this._remoteMethodTable = {};
+        }
 
         (this: any).callFunctionReturnFlushedQueue = this.callFunctionReturnFlushedQueue.bind(
             this,
@@ -174,12 +174,12 @@ class MessageQueue {
         onSucc: ?Function,
     ) {
         if (onFail || onSucc) {
-            // if (!!__DEV__) {
-            //     this._debugInfo[this._callID] = [moduleID, methodID];
-            //     if (this._callID > DEBUG_INFO_LIMIT) {
-            //         delete this._debugInfo[this._callID - DEBUG_INFO_LIMIT];
-            //     }
-            // }
+            if (__DEV__) {
+                this._debugInfo[this._callID] = [moduleID, methodID];
+                if (this._callID > DEBUG_INFO_LIMIT) {
+                    delete this._debugInfo[this._callID - DEBUG_INFO_LIMIT];
+                }
+            }
             // Encode callIDs into pairs of callback identifiers by shifting left and using the rightmost bit
             // to indicate fail (0) or success (1)
             // eslint-disable-next-line no-bitwise
@@ -190,75 +190,75 @@ class MessageQueue {
             this._failureCallbacks[this._callID] = onFail;
         }
 
-        // if (!!__DEV__) {
-        //     global.nativeTraceBeginAsyncFlow &&
-        //     global.nativeTraceBeginAsyncFlow(
-        //         TRACE_TAG_REACT_APPS,
-        //         'native',
-        //         this._callID,
-        //     );
-        // }
+        if (__DEV__) {
+            global.nativeTraceBeginAsyncFlow &&
+            global.nativeTraceBeginAsyncFlow(
+                TRACE_TAG_REACT_APPS,
+                'native',
+                this._callID,
+            );
+        }
         this._callID++;
 
         this._queue[MODULE_IDS].push(moduleID);
         this._queue[METHOD_IDS].push(methodID);
 
-        // if (!!__DEV__) {
-        //     // Validate that parameters passed over the bridge are
-        //     // folly-convertible.  As a special case, if a prop value is a
-        //     // function it is permitted here, and special-cased in the
-        //     // conversion.
-        //     const isValidArgument = val => {
-        //         const t = typeof val;
-        //         if (
-        //             t === 'undefined' ||
-        //             t === 'null' ||
-        //             t === 'boolean' ||
-        //             t === 'string'
-        //         ) {
-        //             return true;
-        //         }
-        //         if (t === 'number') {
-        //             return isFinite(val);
-        //         }
-        //         if (t === 'function' || t !== 'object') {
-        //             return false;
-        //         }
-        //         if (Array.isArray(val)) {
-        //             return val.every(isValidArgument);
-        //         }
-        //         for (const k in val) {
-        //             if (typeof val[k] !== 'function' && !isValidArgument(val[k])) {
-        //                 return false;
-        //             }
-        //         }
-        //         return true;
-        //     };
-        //
-        //     // Replacement allows normally non-JSON-convertible values to be
-        //     // seen.  There is ambiguity with string values, but in context,
-        //     // it should at least be a strong hint.
-        //     const replacer = (key, val) => {
-        //         const t = typeof val;
-        //         if (t === 'function') {
-        //             return '<<Function ' + val.name + '>>';
-        //         } else if (t === 'number' && !isFinite(val)) {
-        //             return '<<' + val.toString() + '>>';
-        //         } else {
-        //             return val;
-        //         }
-        //     };
-        //
-        //     // Note that JSON.stringify
-        //     invariant(
-        //         isValidArgument(params),
-        //         '%s is not usable as a native method argument',
-        //         JSON.stringify(params, replacer),
-        //     );
-        //
-        //     // The params object should not be mutated after being queued
-        //     // deepFreezeAndThrowOnMutationInDev((params: any));
-        // }
+        if (__DEV__) {
+            // Validate that parameters passed over the bridge are
+            // folly-convertible.  As a special case, if a prop value is a
+            // function it is permitted here, and special-cased in the
+            // conversion.
+            const isValidArgument = val => {
+                const t = typeof val;
+                if (
+                    t === 'undefined' ||
+                    t === 'null' ||
+                    t === 'boolean' ||
+                    t === 'string'
+                ) {
+                    return true;
+                }
+                if (t === 'number') {
+                    return isFinite(val);
+                }
+                if (t === 'function' || t !== 'object') {
+                    return false;
+                }
+                if (Array.isArray(val)) {
+                    return val.every(isValidArgument);
+                }
+                for (const k in val) {
+                    if (typeof val[k] !== 'function' && !isValidArgument(val[k])) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+
+            // Replacement allows normally non-JSON-convertible values to be
+            // seen.  There is ambiguity with string values, but in context,
+            // it should at least be a strong hint.
+            const replacer = (key, val) => {
+                const t = typeof val;
+                if (t === 'function') {
+                    return '<<Function ' + val.name + '>>';
+                } else if (t === 'number' && !isFinite(val)) {
+                    return '<<' + val.toString() + '>>';
+                } else {
+                    return val;
+                }
+            };
+
+            // Note that JSON.stringify
+            invariant(
+                isValidArgument(params),
+                '%s is not usable as a native method argument',
+                JSON.stringify(params, replacer),
+            );
+
+            // The params object should not be mutated after being queued
+            // deepFreezeAndThrowOnMutationInDev((params: any));
+        }
         this._queue[PARAMS].push(params);
 
         const now = Date.now();
@@ -272,16 +272,14 @@ class MessageQueue {
             global.nativeFlushQueueImmediate(queue);
         }
         Systrace.counterEvent('pending_js_to_native_queue', this._queue[0].length);
-        // if (!!__DEV__ && this.__spy && isFinite(moduleID)) {
-        //     this.__spy({
-        //         type: TO_NATIVE,
-        //         module: this._remoteModuleTable[moduleID],
-        //         method: this._remoteMethodTable[moduleID][methodID],
-        //         args: params,
-        //     });
-        // } else
-        //
-            if (this.__spy) {
+        if (__DEV__ && this.__spy && isFinite(moduleID)) {
+            this.__spy({
+                type: TO_NATIVE,
+                module: this._remoteModuleTable[moduleID],
+                method: this._remoteMethodTable[moduleID][methodID],
+                args: params,
+            });
+        } else if (this.__spy) {
             this.__spy({
                 type: TO_NATIVE,
                 module: moduleID + '',
@@ -292,10 +290,10 @@ class MessageQueue {
     }
 
     createDebugLookup(moduleID: number, name: string, methods: string[]) {
-        // if (!!__DEV__) {
-        //     this._remoteModuleTable[moduleID] = name;
-        //     this._remoteMethodTable[moduleID] = methods;
-        // }
+        if (__DEV__) {
+            this._remoteModuleTable[moduleID] = name;
+            this._remoteMethodTable[moduleID] = methods;
+        }
     }
 
     // For JSTimers to register its callback. Otherwise a circular dependency
@@ -345,11 +343,11 @@ class MessageQueue {
     __callFunction(module: string, method: string, args: any[]): any {
         this._lastFlush = Date.now();
         this._eventLoopStartTime = this._lastFlush;
-        // if (!!__DEV__ || this.__spy) {
-        //     Systrace.beginEvent(`${module}.${method}(${stringifySafe(args)})`);
-        // } else {
-        //     Systrace.beginEvent(`${module}.${method}(...)`);
-        // }
+        if (__DEV__ || this.__spy) {
+            Systrace.beginEvent(`${module}.${method}(${stringifySafe(args)})`);
+        } else {
+            Systrace.beginEvent(`${module}.${method}(...)`);
+        }
         if (this.__spy) {
             this.__spy({type: TO_JS, module, method, args});
         }
@@ -384,29 +382,29 @@ class MessageQueue {
             ? this._successCallbacks[callID]
             : this._failureCallbacks[callID];
 
-        // if (!!__DEV__) {
-        //     const debug = this._debugInfo[callID];
-        //     const module = debug && this._remoteModuleTable[debug[0]];
-        //     const method = debug && this._remoteMethodTable[debug[0]][debug[1]];
-        //     if (!callback) {
-        //         let errorMessage = `Callback with id ${cbID}: ${module}.${method}() not found`;
-        //         if (method) {
-        //             errorMessage =
-        //                 `The callback ${method}() exists in module ${module}, ` +
-        //                 'but only one callback may be registered to a function in a native module.';
-        //         }
-        //         invariant(callback, errorMessage);
-        //     }
-        //     const profileName = debug
-        //         ? '<callback for ' + module + '.' + method + '>'
-        //         : cbID;
-        //     if (callback && this.__spy) {
-        //         this.__spy({type: TO_JS, module: null, method: profileName, args});
-        //     }
-        //     Systrace.beginEvent(
-        //         `MessageQueue.invokeCallback(${profileName}, ${stringifySafe(args)})`,
-        //     );
-        // }
+        if (__DEV__) {
+            const debug = this._debugInfo[callID];
+            const module = debug && this._remoteModuleTable[debug[0]];
+            const method = debug && this._remoteMethodTable[debug[0]][debug[1]];
+            if (!callback) {
+                let errorMessage = `Callback with id ${cbID}: ${module}.${method}() not found`;
+                if (method) {
+                    errorMessage =
+                        `The callback ${method}() exists in module ${module}, ` +
+                        'but only one callback may be registered to a function in a native module.';
+                }
+                invariant(callback, errorMessage);
+            }
+            const profileName = debug
+                ? '<callback for ' + module + '.' + method + '>'
+                : cbID;
+            if (callback && this.__spy) {
+                this.__spy({type: TO_JS, module: null, method: profileName, args});
+            }
+            Systrace.beginEvent(
+                `MessageQueue.invokeCallback(${profileName}, ${stringifySafe(args)})`,
+            );
+        }
 
         if (!callback) {
             return;
@@ -415,10 +413,10 @@ class MessageQueue {
         delete this._successCallbacks[callID];
         delete this._failureCallbacks[callID];
         callback(...args);
-        //
-        // if (!!__DEV__) {
-        //     Systrace.endEvent();
-        // }
+
+        if (__DEV__) {
+            Systrace.endEvent();
+        }
     }
 }
 

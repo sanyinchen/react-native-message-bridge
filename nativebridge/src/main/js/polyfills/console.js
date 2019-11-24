@@ -387,7 +387,7 @@ INSPECTOR_LEVELS[LOG_LEVELS.error] = 'error';
 
 // Strip the inner function in getNativeLogFunction(), if in dev also
 // strip method printing to originalConsole.
-const INSPECTOR_FRAMES_TO_SKIP =  2;
+const INSPECTOR_FRAMES_TO_SKIP = __DEV__ ? 2 : 1;
 
 function getNativeLogFunction(level) {
   return function() {
@@ -522,12 +522,12 @@ function consoleGroupEndPolyfill() {
 if (global.nativeLoggingHook) {
   const originalConsole = global.console;
   // Preserve the original `console` as `originalConsole`
-  // if (!!__DEV__ && originalConsole) {
-  //   const descriptor = Object.getOwnPropertyDescriptor(global, 'console');
-  //   if (descriptor) {
-  //     Object.defineProperty(global, 'originalConsole', descriptor);
-  //   }
-  // }
+  if (__DEV__ && originalConsole) {
+    const descriptor = Object.getOwnPropertyDescriptor(global, 'console');
+    if (descriptor) {
+      Object.defineProperty(global, 'originalConsole', descriptor);
+    }
+  }
 
   global.console = {
     error: getNativeLogFunction(LOG_LEVELS.error),
@@ -545,36 +545,36 @@ if (global.nativeLoggingHook) {
   // If available, also call the original `console` method since that is
   // sometimes useful. Ex: on OS X, this will let you see rich output in
   // the Safari Web Inspector console.
-  // if (!!__DEV__ && originalConsole) {
-  //   Object.keys(console).forEach(methodName => {
-  //     const reactNativeMethod = console[methodName];
-  //     if (originalConsole[methodName]) {
-  //       console[methodName] = function() {
-  //         originalConsole[methodName](...arguments);
-  //         reactNativeMethod.apply(console, arguments);
-  //       };
-  //     }
-  //   });
-  //
-  //   // The following methods are not supported by this polyfill but
-  //   // we still should pass them to original console if they are
-  //   // supported by it.
-  //   [
-  //     'assert',
-  //     'clear',
-  //     'dir',
-  //     'dirxml',
-  //     'groupCollapsed',
-  //     'profile',
-  //     'profileEnd',
-  //   ].forEach(methodName => {
-  //     if (typeof originalConsole[methodName] === 'function') {
-  //       console[methodName] = function() {
-  //         originalConsole[methodName](...arguments);
-  //       };
-  //     }
-  //   });
-  // }
+  if (__DEV__ && originalConsole) {
+    Object.keys(console).forEach(methodName => {
+      const reactNativeMethod = console[methodName];
+      if (originalConsole[methodName]) {
+        console[methodName] = function() {
+          originalConsole[methodName](...arguments);
+          reactNativeMethod.apply(console, arguments);
+        };
+      }
+    });
+
+    // The following methods are not supported by this polyfill but
+    // we still should pass them to original console if they are
+    // supported by it.
+    [
+      'assert',
+      'clear',
+      'dir',
+      'dirxml',
+      'groupCollapsed',
+      'profile',
+      'profileEnd',
+    ].forEach(methodName => {
+      if (typeof originalConsole[methodName] === 'function') {
+        console[methodName] = function() {
+          originalConsole[methodName](...arguments);
+        };
+      }
+    });
+  }
 } else if (!global.console) {
   const log = global.print || function consoleLoggingStub() {};
   global.console = {

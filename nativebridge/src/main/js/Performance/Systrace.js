@@ -24,7 +24,8 @@ let _canInstallReactHook = false;
 // Implements a subset of User Timing API necessary for React measurements.
 // https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 const REACT_MARKER = '\u269B';
-const userTimingPolyfill = {
+const userTimingPolyfill = __DEV__
+  ? {
       mark(markName: string) {
         if (_enabled) {
           _markStackIndex++;
@@ -83,35 +84,35 @@ const userTimingPolyfill = {
         // React calls this to avoid memory leaks in browsers, but we don't keep
         // measurements anyway.
       },
-    };
-
+    }
+  : null;
 
 const Systrace = {
   installReactHook() {
     if (_enabled) {
-      // if (!!__DEV__) {
-      //   global.performance = userTimingPolyfill;
-      // }
+      if (__DEV__) {
+        global.performance = userTimingPolyfill;
+      }
     }
     _canInstallReactHook = true;
   },
 
   setEnabled(enabled: boolean) {
     if (_enabled !== enabled) {
-      // if (!!__DEV__) {
-      //   if (enabled) {
-      //     global.nativeTraceBeginLegacy &&
-      //       global.nativeTraceBeginLegacy(TRACE_TAG_JS_VM_CALLS);
-      //   } else {
-      //     global.nativeTraceEndLegacy &&
-      //       global.nativeTraceEndLegacy(TRACE_TAG_JS_VM_CALLS);
-      //   }
-      //   if (_canInstallReactHook) {
-      //     if (enabled && global.performance === undefined) {
-      //       global.performance = userTimingPolyfill;
-      //     }
-      //   }
-      // }
+      if (__DEV__) {
+        if (enabled) {
+          global.nativeTraceBeginLegacy &&
+            global.nativeTraceBeginLegacy(TRACE_TAG_JS_VM_CALLS);
+        } else {
+          global.nativeTraceEndLegacy &&
+            global.nativeTraceEndLegacy(TRACE_TAG_JS_VM_CALLS);
+        }
+        if (_canInstallReactHook) {
+          if (enabled && global.performance === undefined) {
+            global.performance = userTimingPolyfill;
+          }
+        }
+      }
       _enabled = enabled;
     }
   },
@@ -182,7 +183,7 @@ const Systrace = {
   },
 };
 
-// if (!!__DEV__) {
+// if (__DEV__) {
 //   // This is needed, because require callis in polyfills are not processed as
 //   // other files. Therefore, calls to `require('moduleId')` are not replaced
 //   // with numeric IDs

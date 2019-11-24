@@ -8,7 +8,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: './BatchedBridge/NativeModules.js',
+    entry: ["./test/index.js"],
     output: {
         filename: 'js-bridge-bundle.js',
         path: path.resolve(__dirname, '../assets')

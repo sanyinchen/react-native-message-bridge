@@ -13,6 +13,7 @@
 #include <queue>
 #include <sstream>
 #include <thread>
+#include <first-party/fb/include/fb/log.h>
 
 namespace facebook {
 namespace jsc {
@@ -331,6 +332,7 @@ void JSCRuntime::evaluateJavaScript(
   if (sourceURLRef) {
     JSStringRelease(sourceURLRef);
   }
+  LOGD("js evaluateJavaScript finished ");
   checkException(res, exc);
 }
 

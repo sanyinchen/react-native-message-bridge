@@ -1,16 +1,14 @@
 package com.sanyinchen.bridge
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
-import com.facebook.Bridge
+import androidx.appcompat.app.AppCompatActivity
+import com.facebook.react.ReactInstanceManager
 import com.facebook.soloader.SoLoader
-
+import com.sanyinchen.test.nativemodule.TestPackages
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,8 +20,22 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val textView = findViewById<TextView>(R.id.text)
         val click = findViewById<Button>(R.id.click)
+        val mainHandle = Handler(Looper.getMainLooper())
         click.setOnClickListener {
-            Bridge.INS.test(this.application)
+
+            val reactInstanceManager = ReactInstanceManager.builder()
+                .setApplication(application)
+                .setJSBundleFile("assets://js-bridge-bundle.js")
+                .addPackage(TestPackages {
+                    mainHandle.post {
+                        textView.text = "message from js : $it"
+                    }
+                })
+                .setNativeModuleCallExceptionHandler { e -> e.printStackTrace() }
+                .build()
+            reactInstanceManager.createReactContextInBackground()
+
+
         }
     }
 

@@ -20,6 +20,7 @@ target_link_libraries(jsi
         folly_json
         jsc
         glog
+        log
         )
 
 link_libraries("libjsc.so")
