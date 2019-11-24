@@ -13,7 +13,7 @@ reat-native-message-bridge is stripped from react-native .
 
 ### Build steps
 1. cd ${ProjectDir}/nativebridge/src/main/js
-2. npm run build / npm run release
+2. npm run build
 3. cd ${ProjectDir} and run ./gradlew clean app:aDebug
 
 ### PREVIEW
