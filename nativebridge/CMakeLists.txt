@@ -36,4 +36,4 @@ add_subdirectory(src/main/cpp/react/jni)
 add_subdirectory(src/main/cpp/first-party/fbgloginit)
 add_subdirectory(src/main/cpp/jsiexecutor)
 
-
+include(ndk-stl-config.cmake)
