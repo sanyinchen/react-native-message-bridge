@@ -17,7 +17,8 @@ android {
 
         externalNativeBuild {
             cmake {
-                cppFlags "-std=c++1y"
+                cppFlags "-std=c++1y", "-fexceptions"
+                cFlags "-Wno-error=format-security", "-g"
                 abiFilters "armeabi-v7a","x86"
                 arguments '-DANDROID_STL=c++_static'
             }
