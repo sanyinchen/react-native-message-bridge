@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64ef1a03-03d5-40c2-beea-8e7f262e1869" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../java/com/sanyinchen/test/nativemodule/LogModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java/com/sanyinchen/test/nativemodule/TestPackages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/js-bridge-bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../app/src/main/java/com/sanyinchen/bridge/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../app/src/main/java/com/sanyinchen/bridge/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cpp/first-party/fb/include/fb/log.h" beforeDir="false" afterPath="$PROJECT_DIR$/../cpp/first-party/fb/include/fb/log.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cpp/jsi/jsi/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cpp/jsi/jsi/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cpp/jsi/jsi/JSCRuntime.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../cpp/jsi/jsi/JSCRuntime.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/com/facebook/Bridge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BatchedBridge/BatchedBridge.js" beforeDir="false" afterPath="$PROJECT_DIR$/BatchedBridge/BatchedBridge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BatchedBridge/MessageQueue.js" beforeDir="false" afterPath="$PROJECT_DIR$/BatchedBridge/MessageQueue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BatchedBridge/NativeModules.js" beforeDir="false" afterPath="$PROJECT_DIR$/BatchedBridge/NativeModules.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Performance/Systrace.js" beforeDir="false" afterPath="$PROJECT_DIR$/Performance/Systrace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polyfills/console.js" beforeDir="false" afterPath="$PROJECT_DIR$/polyfills/console.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="64ef1a03-03d5-40c2-beea-8e7f262e1869" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -50,7 +31,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
@@ -91,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+            <state relative-caret-position="152">
+              <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -254,12 +235,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11957000" />
+    <option name="totallyTimeSpent" value="13135000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2580645" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2580645" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -271,7 +253,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29621622" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29621622" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -348,13 +330,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BatchedBridge/NativeModules.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
@@ -380,6 +355,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
     </entry>

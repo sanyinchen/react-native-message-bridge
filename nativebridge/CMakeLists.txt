@@ -20,7 +20,7 @@ include_directories(src/main/cpp/boost/boost_1_63_0)
 include_directories(src/main/cpp/first-party/fbgloginit)
 include_directories(src/main/cpp/jsi)
 include_directories(src/main/cpp/jsc)
-
+include_directories(src/main/cpp/jsiexecutor)
 
 
 add_subdirectory(src/main/cpp/jsc)
