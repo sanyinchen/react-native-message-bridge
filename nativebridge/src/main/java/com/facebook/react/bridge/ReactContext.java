@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.queue.MessageQueueThread;
 import com.facebook.react.bridge.queue.ReactQueueConfiguration;
+import com.facebook.react.common.LifecycleState;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -54,6 +55,7 @@ public class ReactContext extends ContextWrapper {
     NativeModuleCallExceptionHandler mNativeModuleCallExceptionHandler;
     private @Nullable
     WeakReference<Activity> mCurrentActivity;
+    private LifecycleState mLifecycleState = LifecycleState.BEFORE_CREATE;
 
     public ReactContext(Context base) {
         super(base);
@@ -116,7 +118,9 @@ public class ReactContext extends ContextWrapper {
         }
         return mCatalystInstance.getJSModule(jsInterface);
     }
-
+    public LifecycleState getLifecycleState() {
+        return mLifecycleState;
+    }
     public <T extends NativeModule> boolean hasNativeModule(Class<T> nativeModuleInterface) {
         if (mCatalystInstance == null) {
             throw new RuntimeException(

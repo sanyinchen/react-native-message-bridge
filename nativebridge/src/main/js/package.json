@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
-    "invariant": "^2.2.4"
+    "fbjs": "^1.0.0",
+    "invariant": "^2.2.4",
+    "stacktrace-parser": "^0.1.8"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

@@ -34,6 +34,7 @@ import com.facebook.react.bridge.ReactMarkerConstants;
 import com.facebook.react.bridge.UiThreadUtil;
 import com.facebook.react.bridge.queue.ReactQueueConfigurationSpec;
 import com.facebook.react.common.ReactConstants;
+import com.facebook.react.module.core.ReactChoreographer;
 import com.facebook.soloader.SoLoader;
 import com.facebook.systrace.Systrace;
 import com.facebook.systrace.SystraceMessage;
@@ -172,25 +173,18 @@ public class ReactInstanceManager {
 //            PrinterHolder.getPrinter()
 //                    .logMessage(ReactDebugOverlayTags.RN_CORE, "RNCore: Use Split Packages");
 //
-//            mPackages.add(
-//                    new CoreModulesPackage(
-//                            this,
-//                            new DefaultHardwareBackBtnHandler() {
-//                                @Override
-//                                public void invokeDefaultOnBackPressed() {
-//                                    ReactInstanceManager.this.invokeDefaultOnBackPressed();
-//                                }
-//                            },
-//                            mUIImplementationProvider,
-//                            lazyViewManagersEnabled,
-//                            minTimeLeftInFrameForNonBatchedOperationMs));
+            mPackages.add(
+                    new CoreModulesPackage(
+                            this,
+                            lazyViewManagersEnabled,
+                            minTimeLeftInFrameForNonBatchedOperationMs));
 
             mPackages.addAll(packages);
         }
         mJSIModulePackage = jsiModulePackage;
 
         // Instantiate ReactChoreographer in UI thread.
-        //ReactChoreographer.initialize();
+        ReactChoreographer.initialize();
 
     }
 
