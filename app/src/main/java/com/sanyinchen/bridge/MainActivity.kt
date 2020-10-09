@@ -19,24 +19,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         val textView = findViewById<TextView>(R.id.text)
-        val click = findViewById<Button>(R.id.click)
         val mainHandle = Handler(Looper.getMainLooper())
-        click.setOnClickListener {
+        val reactInstanceManager = ReactInstanceManager.builder()
+            .setApplication(application)
+            .setJSBundleFile("assets://js-bridge-bundle.js")
+            .addPackage(TestPackages {
+                mainHandle.post {
+                    textView.text = "this message is  from js-bridge : $it"
+                }
+            })
+            .setNativeModuleCallExceptionHandler { e -> e.printStackTrace() }
+            .build()
+        reactInstanceManager.createReactContextInBackground()
 
-            val reactInstanceManager = ReactInstanceManager.builder()
-                .setApplication(application)
-                .setJSBundleFile("assets://js-bridge-bundle.js")
-                .addPackage(TestPackages {
-                    mainHandle.post {
-                        textView.text = "message from js : $it"
-                    }
-                })
-                .setNativeModuleCallExceptionHandler { e -> e.printStackTrace() }
-                .build()
-            reactInstanceManager.createReactContextInBackground()
-
-
-        }
     }
 
 

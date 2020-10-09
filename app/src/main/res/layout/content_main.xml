@@ -10,11 +10,6 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
-        android:id="@+id/click"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="JS -> Native Test" />
 
     <TextView
         android:id="@+id/text"
