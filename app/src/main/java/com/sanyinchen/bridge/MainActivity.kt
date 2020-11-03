@@ -18,18 +18,20 @@ class MainActivity : AppCompatActivity() {
         SoLoader.init(this, false)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        var msg: String = "";
         val textView = findViewById<TextView>(R.id.text)
         val mainHandle = Handler(Looper.getMainLooper())
         val reactInstanceManager = ReactInstanceManager.builder()
-            .setApplication(application)
-            .setJSBundleFile("assets://js-bridge-bundle.js")
-            .addPackage(TestPackages {
-                mainHandle.post {
-                    textView.text = "this message is  from js-bridge : $it"
-                }
-            })
-            .setNativeModuleCallExceptionHandler { e -> e.printStackTrace() }
-            .build()
+                .setApplication(application)
+                .setJSBundleFile("assets://js-bridge-bundle.js")
+                .addPackage(TestPackages {
+                    mainHandle.post {
+                        msg += (it + "\n")
+                        textView.text = "this message is  from js-bridge :\n $msg"
+                    }
+                })
+                .setNativeModuleCallExceptionHandler { e -> e.printStackTrace() }
+                .build()
         reactInstanceManager.createReactContextInBackground()
 
     }

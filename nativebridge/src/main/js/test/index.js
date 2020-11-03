@@ -7,9 +7,11 @@
  */
 
 import NativeModules from "../BatchedBridge/NativeModules"
-import JSTimers from "../Core/Timers/JSTimers"
-
-// const Timer = new JSTimers();
 
 global.NativeLog = NativeModules.NativeLog;
-NativeLog.log("hello world !");
+NativeLog.log("hello world ! from js test");
+
+NativeModules.HelloCxxModule.foo((r) => {
+    NativeModules.NativeLog.log(r);
+});
+

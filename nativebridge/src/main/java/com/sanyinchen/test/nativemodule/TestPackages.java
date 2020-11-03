@@ -1,6 +1,7 @@
 package com.sanyinchen.test.nativemodule;
 
 import com.facebook.react.ReactPackage;
+import com.facebook.react.bridge.CxxModuleWrapper;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 
@@ -22,6 +23,7 @@ public class TestPackages implements ReactPackage {
     public List<NativeModule> createNativeModules(@Nonnull ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
         modules.add(new LogModule(reactContext, runnable));
+        modules.add(CxxModuleWrapper.makeDso("cxxmodule", "createHelloCxxModule"));
         return modules;
     }
 
